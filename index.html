@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something is Cooking... 👀</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Caveat:wght@700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts background */
+        .hearts-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: float-up 8s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Chef emoji with cooking animation */
+        .chef-container {
+            font-size: 120px;
+            margin-bottom: 2rem;
+            animation: cook 2s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+
+        @keyframes cook {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        /* Main heading */
+        h1 {
+            font-family: 'Comfortaa', cursive;
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 4px 4px 0 rgba(0,0,0,0.2), 0 0 20px rgba(255,255,255,0.3);
+            }
+            50% {
+                text-shadow: 4px 4px 0 rgba(0,0,0,0.2), 0 0 40px rgba(255,255,255,0.6);
+            }
+        }
+
+        .subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Card */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .message {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .message strong {
+            color: #764ba2;
+            font-weight: 800;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            background: #e0e0e0;
+            border-radius: 50px;
+            overflow: hidden;
+            height: 40px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 50px;
+            animation: loading 3s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 1rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        @keyframes loading {
+            0%, 100% {
+                width: 60%;
+            }
+            50% {
+                width: 85%;
+            }
+        }
+
+        /* Fun facts */
+        .fun-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .fact {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 1.5rem;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .fact:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .fact:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .fact-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Countdown */
+        .countdown {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            font-size: 1.5rem;
+            font-weight: 800;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .countdown-timer {
+            font-size: 3rem;
+            margin: 1rem 0;
+            font-family: 'Comfortaa', cursive;
+        }
+
+        /* Funny quote */
+        .quote {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: white;
+            margin-top: 2rem;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Construction workers */
+        .workers {
+            font-size: 50px;
+            margin-top: 2rem;
+            animation: work 1s ease-in-out infinite;
+        }
+
+        @keyframes work {
+            0%, 100% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.8rem;
+            }
+
+            .chef-container {
+                font-size: 80px;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .message {
+                font-size: 1.2rem;
+            }
+
+            .countdown-timer {
+                font-size: 2rem;
+            }
+
+            .fun-facts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Easter egg: hidden ring */
+        .ring {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 60px;
+            animation: spin 4s linear infinite;
+            cursor: pointer;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .ring:hover {
+            transform: scale(1.3);
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="hearts"></div>
+
+    <div class="container">
+        <div class="chef-container">
+            👨‍🍳🔥
+        </div>
+
+        <h1>SOMETHING IS COOKING...</h1>
+        <div class="subtitle">*literally and figuratively* 😏</div>
+
+        <div class="card">
+            <p class="message">
+                We're in the kitchen whipping up the <strong>most epic wedding website</strong> you've ever seen! 
+                <br><br>
+                (Spoiler: There will be cake. Obviously. 🍰)
+            </p>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <span>Almost done... we promise! 😅</span>
+                </div>
+            </div>
+
+            <div class="fun-facts">
+                <div class="fact">
+                    <span class="fact-emoji">💑</span>
+                    Love is brewing!
+                </div>
+                <div class="fact">
+                    <span class="fact-emoji">🎉</span>
+                    Party mode: LOADING
+                </div>
+                <div class="fact">
+                    <span class="fact-emoji">📸</span>
+                    Awkward dance moves incoming
+                </div>
+                <div class="fact">
+                    <span class="fact-emoji">🍾</span>
+                    Champagne on standby
+                </div>
+            </div>
+
+            <div class="countdown">
+                <div>⏰ ESTIMATED LAUNCH TIME ⏰</div>
+                <div class="countdown-timer" id="timer">00:00:00</div>
+                <div style="font-size: 1rem; margin-top: 1rem;">
+                    (Probably soon... or when we finish arguing about fonts 😂)
+                </div>
+            </div>
+        </div>
+
+        <p class="quote">
+            "Marriage is a workshop... where husband works & wife shops!" 
+            <br>Just kidding, we're equal partners in crime 💕
+        </p>
+
+        <div class="workers">
+            👷‍♂️ 🔨 👷‍♀️ 🛠️
+        </div>
+    </div>
+
+    <div class="ring" onclick="ringClick()">💍</div>
+
+    <script>
+        // Floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = ['❤️', '💕', '💖', '💗', '💝'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 8000);
+        }
+
+        setInterval(createHeart, 800);
+
+        // Countdown timer (counting up from page load)
+        let seconds = 0;
+        setInterval(() => {
+            seconds++;
+            const hrs = Math.floor(seconds / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            document.getElementById('timer').textContent = 
+                String(hrs).padStart(2, '0') + ':' + 
+                String(mins).padStart(2, '0') + ':' + 
+                String(secs).padStart(2, '0');
+        }, 1000);
+
+        // Ring easter egg
+        let ringClicks = 0;
+        function ringClick() {
+            ringClicks++;
+            if (ringClicks === 3) {
+                alert("💍 He liked it so he put a ring on it! 💍\n\nP.S. Yes, we know you're clicking the ring. Stop it. 😂");
+                ringClicks = 0;
+            }
+        }
+
+        // Random fun quotes that change
+        const quotes = [
+            '"Marriage is a workshop... where husband works & wife shops!" <br>Just kidding, we\'re equal partners in crime 💕',
+            '"Love is being stupid together" - Paul Valery <br>(And we\'re really nailing it! 😂)',
+            '"A successful marriage requires falling in love many times, always with the same person" <br>...and Netflix 📺',
+            '"Marriage: When dating goes too well!" <br>Oops! 🤷‍♀️🤷‍♂️'
+        ];
+
+        setInterval(() => {
+            const quote = document.querySelector('.quote');
+            quote.style.opacity = '0';
+            setTimeout(() => {
+                quote.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+                quote.style.opacity = '1';
+            }, 500);
+        }, 8000);
+
+        document.querySelector('.quote').style.transition = 'opacity 0.5s ease';
+    </script>
+</body>
+</html>
